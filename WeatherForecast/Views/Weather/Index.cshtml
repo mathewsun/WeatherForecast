@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model WeatherForecastModel
+
+<div class="hero" data-bg-image="images/Moscow@2x.jpg">
+    <div class="container">
+        <form method="post"  class="find-location">
+            <input type="text" name="city" value="@Model.City" placeholder="Найдите свой город...">
+            <input type="submit" value="Найти">
+        </form>
+    </div>
+</div>
+<div class="forecast-table">
+    <div class="container">
+        <div class="forecast-container">
+            <div class="today forecast">
+                <div class="forecast-header">
+                    <div class="day">@CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(Model.CurrentForecast.DateTime.DayOfWeek)</div>
+                    <div class="date">@Model.CurrentForecast.DateTime.Day @CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetMonthName(Model.CurrentForecast.DateTime.Month)</div>
+                </div>
+                <div class="forecast-content">
+                    <div class="location">@Model.City</div>
+                    <div class="degree">
+                        <div class="num">@Math.Round(Model.CurrentForecast.TempC)<sup>o</sup>C</div>
+                        <div class="forecast-icon">
+                            <img src="@Model.CurrentForecast.ConditionIconUrl" alt="" width=90>
+                        </div>
+                    </div>
+                    <span><img src="~/images/icon-umberella.png" alt="">@Math.Round(Model.CurrentForecast.ChanceOfRain)</span>
+                    <span><img src="~/images/icon-wind.png" alt="">@Math.Round(Model.CurrentForecast.WindKph)</span>
+                    <span><img src="~/images/icon-compass.png" alt="">Восточный</span>
+                </div>
+            </div>
+            @foreach (var weather in Model.ForecastDayModels)
+            {
+                <div class="forecast">
+                    <div class="forecast-header">
+                        <div class="day">@CultureInfo.GetCultureInfo("ru-RU").DateTimeFormat.GetDayName(@weather.DateTime.DayOfWeek)</div>
+                    </div>
+                    <div class="forecast-content">
+                        <div class="forecast-icon">
+                            <img src="@weather.ConditionIconUrl" alt="" width=48>
+                        </div>
+                        <div class="degree">@Math.Round(weather.TempC)<sup>o</sup>C</div>
+                        <small>18<sup>o</sup></small>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

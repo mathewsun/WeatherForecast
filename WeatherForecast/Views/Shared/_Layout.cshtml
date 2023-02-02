@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    <title>Тестовое задание, Погода сегодня</title>
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true"/>
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link href="~/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="site-content">
+    <div class="site-header">
+        <div class="container">
+            <a href="/" class="branding">
+                <img src="images/logo.png" alt="" class="logo">
+                <div class="logo-type">
+                    <h1 class="site-title">Тестовое задание</h1>
+                    <small class="site-description">мы знаем о погоде все</small>
+                </div>
+            </a>
+
+            <div class="main-navigation">
+                <button type="button" class="menu-toggle">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <ul class="menu">
+                    <li class="menu-item current-menu-item">
+                        <a href="/">Домой</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mobile-navigation"></div>
+
+        </div>
+    </div>
+    
+    <main role="main">
+        @RenderBody()
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p class="colophon">&copy; Copyright 2022 CBR. Тестовое задание, не для публикации.</p>
+        </div>
+    </footer>
+</div>
+
+<script src="~/js/jquery-1.11.1.min.js"></script>
+<script src="~/js/plugins.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
